@@ -10,7 +10,7 @@ fea=read.table('features.txt',header=F, sep='')
 names=as.character(fea[,2])
 
 
-##1!Merges the training and the test sets to create one data set##
+##1.Merges the training and the test sets to create one data set##
 #Move into'./train'
 setwd('./train')
 #List files
@@ -20,7 +20,7 @@ t1=read.table(files1[3],header=F, sep='')
 #Rename the columns by the feature names from 'features.txt'
 colnames(t1)=names
 
-##2!Extracts only the measurements on the mean and standard deviation for each measurement#
+##2.Extracts only the measurements on the mean and standard deviation for each measurement#
 nt1= t1[,grep("mean|std",names)]
 #Read the other two files
 t2=read.table(files1[2],header=F, sep='')
@@ -47,11 +47,11 @@ colnames(t)[1]='subject'
 colnames(t)[2]='activity'
 #Extract the activity column
 act=as.factor(t[,2])
-##3!Uses descriptive activity names to name the activities in the data set##
+##3.Uses descriptive activity names to name the activities in the data set##
 levels(act) = list(WALKING='1', WALKING_UPSTAIRS='2',WALKING_DOWNSTAIRS='3', SITTING='4', STANDING='5', LAYING='6')
 t[,2]=act
 
-##!4Appropriately labels the data set with descriptive variable names##
+##4.Appropriately labels the data set with descriptive variable names##
 #Replace the orginal names by descriptive names, one by one
 names(t)=gsub("fB","FFT-B",names(t))
 names(t)=gsub("tB","Time-B",names(t))
@@ -61,7 +61,7 @@ names(t)=gsub("std","Standard.Deviation",names(t))
 names(t)=gsub("()","", names(t), fixed="TRUE")
 names(t)=gsub("Freq","-Freq", names(t))
 
-##!5Creates a second, independent tidy data set with the average of each variable for each activity and each subject##
+##5.Creates a second, independent tidy data set with the average of each variable for each activity and each subject##
 #Produce the new dataframe
 aggdata <-aggregate(t[3:81], by=list(t[,1],t[,2]),FUN=mean)
 
@@ -73,3 +73,4 @@ names(aggdata)=tolower(names(aggdata))
 setwd('../')
 #Save the new dataframe as a text table
 write.table(aggdata, "./final.txt", sep="\t")
+#Done!
