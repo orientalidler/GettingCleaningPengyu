@@ -2,10 +2,10 @@ GettingCleaningPengyu
 =====================
 
 Final Assignment for JHU getting cleaning
-#Before u run the run_analysis.r file, please make sure your work directory is the folder "\UCI HAR Dataset"
-#It is? Here we go! 
+Before u run the run_analysis.r file, please make sure your work directory is the folder "\UCI HAR Dataset"
+It is? Here we go! 
 
-#Warm up Extract the feature names from 'features.txt'
+#Warm up: Extract the feature names from 'features.txt'
 fea=read.table('features.txt',header=F, sep='')
 names=as.character(fea[,2])
 
